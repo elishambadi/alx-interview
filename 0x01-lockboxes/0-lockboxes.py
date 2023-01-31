@@ -1,7 +1,12 @@
+#!/usr/bin/python3
 import time
 
+
 def canUnlockAll(boxes):
-    # This monitors no of boxes closed
+    # canUnlockAll() - checks if all lockboxes can be unlocked
+    # Args:
+    #   boxes - a list of lists with boxes and the keys inside them
+    # Returns: boolean
     length = max(boxes)
 
     if len(length) > 1:
@@ -10,7 +15,7 @@ def canUnlockAll(boxes):
         length = length[0]
 
     list_ = [iter for iter in range(int(length+1))]
-    list_.pop(0) # Box 0 is already open
+    list_.pop(0)  # Box 0 is already open
 
     av_keys = []
     av_keys.append(0)
@@ -28,7 +33,7 @@ def canUnlockAll(boxes):
 
             for i in range(len(pend_keys)):
                 if pend_keys[i] in av_keys:
-                    # print("Key for box {} found! Going back to open...".format(pend_keys[i]))
+                    # Go back to open box
                     for j in range(len(boxes[pend_keys[i]])):
                         av_keys.append(boxes[pend_keys[i]][j])
                     pend_keys.pop(i)
