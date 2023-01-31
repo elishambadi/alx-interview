@@ -1,7 +1,4 @@
 #!/usr/bin/python3
-import time
-
-
 def canUnlockAll(boxes):
     # canUnlockAll() - checks if all lockboxes can be unlocked
     # Args:
