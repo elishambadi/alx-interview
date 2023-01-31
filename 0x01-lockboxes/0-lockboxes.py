@@ -1,9 +1,14 @@
 #!/usr/bin/python3
+"""Lockboxes module"""
+
+
 def canUnlockAll(boxes):
-    # canUnlockAll() - checks if all lockboxes can be unlocked
-    # Args:
-    #   boxes - a list of lists with boxes and the keys inside them
-    # Returns: boolean
+    """
+     canUnlockAll() - checks if all lockboxes can be unlocked
+     Args:
+       boxes - a list of lists with boxes and the keys inside them
+     Returns: boolean
+    """
     length = max(boxes)
 
     if len(length) > 1:
