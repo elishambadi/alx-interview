@@ -11,6 +11,9 @@ def canUnlockAll(boxes):
     """
     length = max(boxes)
 
+    if len(length) == 0:
+        return False
+
     if len(length) > 1:
         length = max(length)
     else:
