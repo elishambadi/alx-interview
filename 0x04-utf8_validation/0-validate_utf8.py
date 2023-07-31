@@ -3,10 +3,12 @@
 UTF-8 Validation
 """
 
+
 def validUTF8(data):
     """
     valiUTF8 - checks if UTF8 data is valid
     """
+
     num_bytes_to_check = 0
 
     for num in data:
