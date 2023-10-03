@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""Lockboxes Module"""
 def canUnlockAll(boxes):
     """Check if boxes can be unlocked"""
     opened = [False] * len(boxes)
