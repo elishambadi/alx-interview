@@ -1,7 +1,11 @@
 #!/usr/bin/python3
 """Lockboxes Module"""
 def canUnlockAll(boxes):
-    """Check if boxes can be unlocked"""
+    """
+    canUnlockAll: Checks if boxes can be unlocked
+    Args: boxes - 2D array holding boxes with keys
+    Returns: true or false
+    """
     opened = [False] * len(boxes)
     opened[0] = True
     counter = [0]
