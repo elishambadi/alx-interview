@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-"""Lockboxes Module"""
+"""
+    Module: Lockboxes Module
+"""
 def canUnlockAll(boxes):
     """
     Checks if boxes can be unlocked
