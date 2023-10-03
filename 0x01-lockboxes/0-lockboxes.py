@@ -2,7 +2,7 @@
 """Lockboxes Module"""
 def canUnlockAll(boxes):
     """
-    canUnlockAll: Checks if boxes can be unlocked
+    Checks if boxes can be unlocked
     Args: boxes - 2D array holding boxes with keys
     Returns: true or false
     """
