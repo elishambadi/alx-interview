@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 def canUnlockAll(boxes):
+    """Check if boxes can be unlocked"""
     opened = [False] * len(boxes)
     opened[0] = True
     counter = [0]
