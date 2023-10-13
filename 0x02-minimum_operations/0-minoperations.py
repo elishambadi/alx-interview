@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 """ALX Interview"""
+
+
 def minOperations(n):
     """Min Operations Function"""
     if n <= 1:
@@ -17,7 +19,3 @@ def minOperations(n):
         operations += 1  # Paste operation
 
     return operations
-
-# Example usage:
-n = 9
-result = minOperations(n)
