@@ -23,10 +23,10 @@ signal.signal(signal.SIGINT, print_statistics)
 try:
     for line in sys.stdin:
         parts = line.split()
-        if len(parts) == 7:
-            status_code = parts[5]
+        if len(parts) == 9:
+            status_code = parts[7]
             try:
-                file_size = int(parts[6])
+                file_size = int(parts[8])
             except ValueError:
                 continue
             total_file_size += file_size
