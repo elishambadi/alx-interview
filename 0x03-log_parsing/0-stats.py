@@ -1,54 +1,47 @@
 #!/usr/bin/python3
+"""Log parsing Module for python"""
 import sys
-import re
-from collections import defaultdict
-"""
-    Module to parse logs
-"""
+import signal
 
+status_code_counts = {}
 
-def compute_metrics():
-    """
-        Parses log output in a loop
-        Args: stdin
-        Returns: no. of log lines & status code counts
-    """
-    total_file_size = 0
-    status_code_counts = defaultdict(int)
+total_file_size = 0
+line_count = 0
 
-    try:
-        line_count = 0
+def print_statistics(signal, frame):
+    """Prints Log statistics when Ctrl+c signal is passed"""
+    print("Total file size:", total_file_size)
 
-        for line in sys.stdin:
-            line = line.strip()
+    for status_code in sorted(status_code_counts.keys()):
+        print(f"{status_code}: {status_code_counts[status_code]}")
+    
+    sys.exit(0)
 
-            # Extract relevant information using regular expressions
-            mc = re.match(r'^.*?"GET \/projects\/260.*?" (\d+) (\d+)$', line)
-            if mc:
-                status_code = match.group(1)
-                file_size = int(match.group(2))
+signal.signal(signal.SIGINT, print_statistics)
 
-                # Update total file size
-                total_file_size += file_size
+try:
+    for line in sys.stdin:
+        parts = line.split()
+        if len(parts) == 7:
+            status_code = parts[5]
+            try:
+                file_size = int(parts[6])
+            except ValueError:
+                continue
 
-                # Update status code counts
-                if status_code.isdigit():
-                    status_code_counts[status_code] += 1
+            total_file_size += file_size
+            
+            if status_code in status_code_counts:
+                status_code_counts[status_code] += 1
+            else:
+                status_code_counts[status_code] = 1
+            
+            line_count += 1
+            
+            if line_count % 10 == 0:
+                print("Total file size:", total_file_size)
+                for status_code in sorted(status_code_counts.keys()):
+                    print(f"{status_code}: {status_code_counts[status_code]}")
 
-                line_count += 1
-
-                # Print statistics every 10 lines
-                if line_count % 10 == 0:
-                    print("File size:", total_file_size)
-                    for code in sorted(status_code_counts.keys()):
-                        print(code + ":", status_code_counts[code])
-
-    except KeyboardInterrupt:
-        pass
-
-    print("File size:", total_file_size)
-    for code in sorted(status_code_counts.keys()):
-        print(code + ":", status_code_counts[code])
-
-
-compute_metrics()
+except KeyboardInterrupt:
+    print_statistics(None, None)
