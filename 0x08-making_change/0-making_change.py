@@ -1,8 +1,10 @@
 #!/usr/bin/python3
+"""Making Change"""
 
-
-def makeChange(coins, total):
-    # If total is 0 or less, return 0
+def makeChange(coins: list, total: int) -> int:
+    """
+        Making Change function
+    """
     if total <= 0:
         return 0
 
